@@ -1,0 +1,55 @@
+<mat-drawer-container class="example-container" autosize>
+
+  <mat-toolbar class="custom-toolbar" *ngIf="!isLoginRoute">
+    <button type="button" mat-mini-fab (click)="toggleDrawer()" color="secondary" style="box-shadow: none;">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span style="padding-left: 15px;"></span>
+    <span class="example-spacer"></span>
+    <button mat-icon-button class="example-icon favorite-icon">
+      <mat-icon>account_circle</mat-icon>
+      <mat-icon>arrow_drop_down</mat-icon>
+    </button>
+  </mat-toolbar>
+
+
+  <mat-drawer #drawer class="example-sidenav" mode="side" opened="true" *ngIf="!isLoginRoute">
+   <img src="https://auth.pivotel.com.au/pulsar4/assets/img/pulsar4-logo.png" class="sidenav-logo">
+
+    <div class="sidenav-button-container">
+      <button routerLink="dashboard" class="sidenav-button" routerLinkActive="active">
+        <mat-icon class="sidenav-button-icon">dashboard</mat-icon>
+        Dashboard
+      </button>
+    </div>
+    <div class="sidenav-button-container">
+      <button routerLink="services" class="sidenav-button" routerLinkActive="active">
+        <mat-icon class="sidenav-button-icon">satellite</mat-icon>
+        Services &amp; Devices
+      </button>
+    </div>
+    <div class="sidenav-button-container">
+      <button routerLink="templates" class="sidenav-button" routerLinkActive="active">
+        <mat-icon class="sidenav-button-icon">file_copy</mat-icon>
+        Templates
+      </button>
+    </div>
+    <div class="sidenav-button-container">
+      <button routerLink="tags" class="sidenav-button" routerLinkActive="active">
+        <mat-icon class="sidenav-button-icon">collections_bookmark</mat-icon>
+        Tags
+      </button>
+    </div>
+  
+    
+    <div style="position: fixed;bottom: 0;padding-left:60px;padding-bottom: 40px;">
+    <button class="logout-button" style="height: 100%;width: 100%;" (click)="postLogout()"><mat-icon
+      style="margin-right: 5px;">logout</mat-icon>Logout</button>
+    </div>
+  </mat-drawer>
+
+  <div class="example-sidenav-content">
+    <router-outlet></router-outlet>
+  </div>
+
+</mat-drawer-container>
