@@ -1,1 +1,48 @@
-<p>services works!</p>
+<div style="float:right;">
+    <mat-form-field appearance="outline">
+        <mat-label>Search</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Filter table" #input>
+    </mat-form-field>
+</div>
+
+<div style="padding-top: 10px;padding-bottom: 25px;">
+    <button href="#" class="main-button"><mat-icon style="margin-right: 5px;">library_add</mat-icon>Add
+        Data</button>
+    <br>
+</div>
+
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="vessel">
+            <th mat-header-cell *matHeaderCellDef> Vessel </th>
+            <td mat-cell *matCellDef="let element"> {{element.vessel}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="type">
+            <th mat-header-cell *matHeaderCellDef> Type </th>
+            <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="msisdn">
+            <th mat-header-cell *matHeaderCellDef> MSISDN </th>
+            <td mat-cell *matCellDef="let element"> {{element.msisdn}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="iccid">
+            <th mat-header-cell *matHeaderCellDef> iccid </th>
+            <td mat-cell *matCellDef="let element"> {{element.iccid}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+    </mat-paginator>
+</div>

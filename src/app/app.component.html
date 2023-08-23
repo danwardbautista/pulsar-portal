@@ -14,8 +14,9 @@
 
 
   <mat-drawer #drawer class="example-sidenav" mode="side" opened="true" *ngIf="!isLoginRoute">
-   <img src="https://auth.pivotel.com.au/pulsar4/assets/img/pulsar4-logo.png" class="sidenav-logo">
+    <img src="https://auth.pivotel.com.au/pulsar4/assets/img/pulsar4-logo.png" class="sidenav-logo">
 
+    <hr>
     <div class="sidenav-button-container">
       <button routerLink="dashboard" class="sidenav-button" routerLinkActive="active">
         <mat-icon class="sidenav-button-icon">dashboard</mat-icon>
@@ -40,11 +41,58 @@
         Tags
       </button>
     </div>
-  
-    
+
+    <hr>
+    <h3 class="sidenav-text">Profiles</h3>
+
+    <div class="sidenav-button-container">
+      <button routerLink="tags" class="sidenav-button" routerLinkActive="active">
+        <mat-icon class="sidenav-button-icon">add_alert</mat-icon>
+        Alerting
+      </button>
+    </div>
+
+    <div class="sidenav-button-container">
+      <button routerLink="tags" class="sidenav-button" routerLinkActive="active">
+        <mat-icon class="sidenav-button-icon">lock</mat-icon>
+        Barring
+      </button>
+    </div>
+
+    <div class="sidenav-button-container">
+      <button routerLink="tags" class="sidenav-button" routerLinkActive="active">
+        <mat-icon class="sidenav-button-icon">security</mat-icon>
+        Firewall
+      </button>
+    </div>
+
+    <div class="sidenav-button-container">
+      <button routerLink="tags" class="sidenav-button" routerLinkActive="active">
+        <mat-icon class="sidenav-button-icon">domain</mat-icon>
+        Domain Filter
+      </button>
+    </div>
+
+    <hr>
+    <h3 class="sidenav-text">Account Management</h3>
+
+    <div class="sidenav-button-container">
+      <button routerLink="tags" class="sidenav-button" routerLinkActive="active">
+        <mat-icon class="sidenav-button-icon">list</mat-icon>
+        Action Log
+      </button>
+    </div>
+
+    <div class="sidenav-button-container">
+      <button routerLink="tags" class="sidenav-button" routerLinkActive="active">
+        <mat-icon class="sidenav-button-icon">supervisor_account</mat-icon>
+        Users
+      </button>
+    </div>
+
     <div style="position: fixed;bottom: 0;padding-left:60px;padding-bottom: 40px;">
-    <button class="logout-button" style="height: 100%;width: 100%;" (click)="postLogout()"><mat-icon
-      style="margin-right: 5px;">logout</mat-icon>Logout</button>
+      <button class="logout-button" style="height: 100%;width: 100%;" (click)="postLogout()"><mat-icon
+          style="margin-right: 5px;">logout</mat-icon>Logout</button>
     </div>
   </mat-drawer>
 
