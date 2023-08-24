@@ -32,6 +32,12 @@ import { ServicesComponent } from './services/services.component';
 import { TemplatesComponent } from './templates/templates.component';
 import { TagsComponent } from './tags/tags.component';
 import { NgChartsModule } from 'ng2-charts';
+import { AlertingComponent } from './alerting/alerting.component';
+import { BarringComponent } from './barring/barring.component';
+import { FirewallComponent } from './firewall/firewall.component';
+import { DomainComponent } from './domain/domain.component';
+import { ActionLogComponent } from './action-log/action-log.component';
+import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -40,6 +46,12 @@ const routes: Routes = [
   { path: 'services', component: ServicesComponent },
   { path: 'templates', component: TemplatesComponent },
   { path: 'tags', component: TagsComponent },
+  { path: 'alerting', component: AlertingComponent },
+  { path: 'barring', component: BarringComponent },
+  { path: 'firewall', component: FirewallComponent },
+  { path: 'domain', component: DomainComponent },
+  { path: 'action-log', component: ActionLogComponent },
+  { path: 'users', component: UsersComponent },
 ];
 
 @NgModule({
@@ -49,7 +61,13 @@ const routes: Routes = [
     LoginComponent,
     ServicesComponent,
     TemplatesComponent,
-    TagsComponent
+    TagsComponent,
+    AlertingComponent,
+    BarringComponent,
+    FirewallComponent,
+    DomainComponent,
+    ActionLogComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,
