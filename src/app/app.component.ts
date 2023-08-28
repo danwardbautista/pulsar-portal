@@ -1,7 +1,7 @@
 import { Component,OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute, NavigationEnd} from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Event } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
 @Component({
@@ -12,32 +12,36 @@ import { filter } from 'rxjs/operators';
 export class AppComponent {
   title = 'pulsar-portal';
   isLoginRoute: boolean = false;
+  showToolbarAndDrawer: boolean = true;
 
   constructor(private router: Router, private _snackBar: MatSnackBar, private route: ActivatedRoute) {
+    this.router.events
+      .pipe(filter((event: Event): event is NavigationEnd => event instanceof NavigationEnd))
+      .subscribe((event: NavigationEnd) => {
+        this.showToolbarAndDrawer = event.url !== '/login';
+      });
   }
 
   @ViewChild('drawer') drawer: any; // Change the type if necessary
 
-  // ... other code ...
-
-  // Use this method to toggle the drawer
   toggleDrawer() {
     if (this.drawer) {
       this.drawer.toggle();
     }
   }
 
-  ngOnInit(): void {
-    this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe((event: any) => { // Change the type to 'any'
-        // Cast the event to NavigationEnd
-        const navigationEndEvent = event as NavigationEnd;
-
-        // Check if the current route is the login route
-        this.isLoginRoute = navigationEndEvent.url === '/login';
-      });
+  ngOnInit() {
+    // this.router.events.subscribe(event => {
+    //   if (event instanceof NavigationEnd) {
+    //     if (event.url === '/login') {
+    //       this.showToolbarAndDrawer = false; 
+    //     } else {
+    //       this.showToolbarAndDrawer = true;
+    //     }
+    //   }
+    // });
   }
+  
 
   postLogout() {
     this.router.navigate(['/login']);

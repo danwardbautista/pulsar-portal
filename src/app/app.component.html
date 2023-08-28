@@ -1,6 +1,6 @@
 <mat-drawer-container class="example-container" autosize>
 
-  <mat-toolbar class="custom-toolbar" *ngIf="!isLoginRoute">
+  <mat-toolbar *ngIf="showToolbarAndDrawer" class="custom-toolbar">
     <button type="button" mat-mini-fab (click)="toggleDrawer()" color="secondary" style="box-shadow: none;">
       <mat-icon>menu</mat-icon>
     </button>
@@ -13,7 +13,7 @@
   </mat-toolbar>
 
 
-  <mat-drawer #drawer class="example-sidenav" mode="side" opened="true" *ngIf="!isLoginRoute">
+  <mat-drawer *ngIf="showToolbarAndDrawer" #drawer class="example-sidenav" mode="side" opened="true">
     <img src="https://auth.pivotel.com.au/pulsar4/assets/img/pulsar4-logo.png" class="sidenav-logo">
 
     <hr>
