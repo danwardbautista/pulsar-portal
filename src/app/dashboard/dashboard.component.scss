@@ -1,5 +1,5 @@
-mat-card{
-    padding:15px;
+mat-card {
+    padding: 15px;
 }
 
 
@@ -14,30 +14,85 @@ mat-card{
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-width: 100px; /* Adjust the value as needed */
+    min-width: 100px;
+    /* Adjust the value as needed */
 }
 
 
 .custom-icon {
-    font-size: 25px; /* Increase the size as needed */
-    vertical-align: middle; /* Adjust alignment as needed */
+    font-size: px;
+    /* Increase the size as needed */
+    vertical-align: middle;
+    /* Adjust alignment as needed */
     color: rgb(28, 184, 8);
 }
 
 
 .custom-text {
-    margin-top: 12px; /* Adjust the spacing as needed */
+    margin-top: 12px;
+    /* Adjust the spacing as needed */
     font-size: 20px;
     font-weight: 400;
 }
 
-.green-icon{
+.green-icon {
     color: rgb(28, 184, 8);
 }
 
-.red-icon{
+.red-icon {
     color: rgb(184, 8, 8);
 }
 
+.info-box-class {
+    font-size: 17px;
+}
 
+.icon-color {
+    color: white;
+}
 
+.dashboard-card {
+    background-color: #0067B4;
+    color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    text-align: left;
+    position: relative;
+  }
+  
+  .icon {
+    font-size: 64px;
+    margin-right: 20px;
+    color: rgb(97, 207, 97);
+  }
+  
+  .number {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .label {
+    font-size: 18px;
+    color: rgb(97, 207, 97);
+  }
+  
+  .view-more {
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-size: 14px;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  
+  .view-more:hover {
+    color: rgba(255, 255, 255, 1);
+  }
+
+  

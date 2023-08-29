@@ -16,6 +16,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatDividerModule} from '@angular/material/divider';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
 
 import { MatTableModule } from '@angular/material/table';
 import { HttpClientModule } from '@angular/common/http';
@@ -40,7 +41,7 @@ import { ActionLogComponent } from './action-log/action-log.component';
 import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'services', component: ServicesComponent },
@@ -85,6 +86,7 @@ const routes: Routes = [
     MatSelectModule,
     MatOptionModule,
     MatCardModule,
+    MatMenuModule,
     FormsModule,
     ReactiveFormsModule,
     MatSnackBarModule,

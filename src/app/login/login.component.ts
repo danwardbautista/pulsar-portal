@@ -11,8 +11,11 @@ export class LoginComponent {
 
   constructor(private router: Router, private _snackBar: MatSnackBar) {
   }
+  
 
   postLogin() {
+    localStorage.setItem('loggedIn', 'true');
+    console.log(localStorage.getItem('loggedIn'));
     this.router.navigate(['/dashboard']);
     this._snackBar.open("Login successful.", 'Close', {
       panelClass: 'success-snackbar',

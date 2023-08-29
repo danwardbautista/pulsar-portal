@@ -4,12 +4,30 @@
     <button type="button" mat-mini-fab (click)="toggleDrawer()" color="secondary" style="box-shadow: none;">
       <mat-icon>menu</mat-icon>
     </button>
+    <div style="padding-left: 25px;">
+      <div class="row">
+        <div class="col">
+          <input type="text" placeholder="Account No." class="smaller-input">
+        </div>
+        <div class="col">
+          <button class="account-search-button smaller-button">
+            <mat-icon class="account-search-icons">subdirectory_arrow_right</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
     <span style="padding-left: 15px;"></span>
     <span class="example-spacer"></span>
-    <button mat-icon-button class="example-icon favorite-icon">
+    John Smith
+    <button mat-icon-button class="example-icon favorite-icon" [matMenuTriggerFor]="menu">
       <mat-icon>account_circle</mat-icon>
       <mat-icon>arrow_drop_down</mat-icon>
     </button>
+    
+    <mat-menu #menu="matMenu">
+      <button class="logout-button" style="height: 100%;width: 100%;" (click)="postLogout()"><mat-icon
+        style="margin-right: 5px;">logout</mat-icon>Logout</button>
+    </mat-menu>
   </mat-toolbar>
 
 
@@ -91,8 +109,7 @@
     </div>
 
     <div style="position: fixed;bottom: 0;padding-left:60px;padding-bottom: 40px;">
-      <button class="logout-button" style="height: 100%;width: 100%;" (click)="postLogout()"><mat-icon
-          style="margin-right: 5px;">logout</mat-icon>Logout</button>
+      
     </div>
   </mat-drawer>
 

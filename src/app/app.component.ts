@@ -11,6 +11,7 @@ import { filter } from 'rxjs/operators';
 })
 export class AppComponent {
   title = 'pulsar-portal';
+  save:any;
   isLoginRoute: boolean = false;
   showToolbarAndDrawer: boolean = true;
 
@@ -31,19 +32,20 @@ export class AppComponent {
   }
 
   ngOnInit() {
-    // this.router.events.subscribe(event => {
-    //   if (event instanceof NavigationEnd) {
-    //     if (event.url === '/login') {
-    //       this.showToolbarAndDrawer = false; 
-    //     } else {
-    //       this.showToolbarAndDrawer = true;
-    //     }
-    //   }
-    // });
+    // this.save = localStorage.getItem('loggedIn');
+
+    // if(this.save=="none")
+    // {
+    //   this.showToolbarAndDrawer = false;
+    // }
+    // else{
+    //   this.showToolbarAndDrawer = true;
+    // }
   }
   
 
   postLogout() {
+    localStorage.setItem('loggedIn', 'none');
     this.router.navigate(['/login']);
     this._snackBar.open("Logout successful.", 'Close', {
       panelClass: 'success-snackbar',
