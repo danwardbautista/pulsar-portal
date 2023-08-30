@@ -115,7 +115,7 @@ thead {
 $color: #185e94;
 $secondary-color: #2A37FF;
 $error-color: #de4553;
-$logout-color: #172e69;
+$logout-color: #f3f3f3;
 
 .main-button {
 	display: flex;
@@ -176,7 +176,7 @@ $logout-color: #172e69;
 	padding-right: 17px;
 	border-radius: 0px;
 	border: none;
-	color: #fff;
+	color: black;
 	font-size: 17px;
 	font-weight: 500;
 	letter-spacing: 0.5px;
@@ -323,4 +323,10 @@ $logout-color: #172e69;
 			width: 100%;
 		}
 	}
+}
+
+.clickable-row:hover{
+	background-color: rgb(230, 230, 230) !important;
+	cursor: pointer;
+	
 }
