@@ -12,6 +12,7 @@ body {
 
 /* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';
+@import "~bootstrap-icons/font/bootstrap-icons.css";
 
 :root {
 	--primary-color: #153d77;
@@ -62,7 +63,7 @@ th {
 }
 
 thead {
-	background-color: #4B0082 !important;
+	background-color: #0067B4 !important;
 	border-radius: 25px;
 }
 
@@ -111,7 +112,7 @@ thead {
 	justify-content: center;
 }
 
-$color: #003fb4;
+$color: #185e94;
 $secondary-color: #2A37FF;
 $error-color: #de4553;
 $logout-color: #172e69;

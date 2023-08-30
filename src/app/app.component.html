@@ -5,16 +5,8 @@
       <mat-icon>menu</mat-icon>
     </button>
     <div style="padding-left: 25px;">
-      <div class="row">
-        <div class="col">
-          <input type="text" placeholder="Account No." class="smaller-input">
-        </div>
-        <div class="col">
-          <button class="account-search-button smaller-button">
-            <mat-icon class="account-search-icons">subdirectory_arrow_right</mat-icon>
-          </button>
-        </div>
-      </div>
+      <input type="text" class="input-field" placeholder="Account">
+      <button class="enter-button"><i class="bi bi-arrow-right-circle-fill"></i></button>
     </div>
     <span style="padding-left: 15px;"></span>
     <span class="example-spacer"></span>
@@ -23,17 +15,18 @@
       <mat-icon>account_circle</mat-icon>
       <mat-icon>arrow_drop_down</mat-icon>
     </button>
-    
+
     <mat-menu #menu="matMenu">
       <button class="logout-button" style="height: 100%;width: 100%;" (click)="postLogout()"><mat-icon
-        style="margin-right: 5px;">logout</mat-icon>Logout</button>
+          style="margin-right: 5px;">logout</mat-icon>Logout</button>
     </mat-menu>
   </mat-toolbar>
 
 
   <mat-drawer *ngIf="showToolbarAndDrawer" #drawer class="example-sidenav" mode="side" opened="true">
+    <a routerLink="dashboard">
     <img src="https://auth.pivotel.com.au/pulsar4/assets/img/pulsar4-logo.png" class="sidenav-logo">
-
+  </a>
     <hr>
     <div class="sidenav-button-container">
       <button routerLink="dashboard" class="sidenav-button" routerLinkActive="active">
@@ -109,7 +102,7 @@
     </div>
 
     <div style="position: fixed;bottom: 0;padding-left:60px;padding-bottom: 40px;">
-      
+
     </div>
   </mat-drawer>
 
