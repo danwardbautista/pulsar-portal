@@ -4,10 +4,7 @@
     <button type="button" mat-mini-fab (click)="toggleDrawer()" color="secondary" style="box-shadow: none;">
       <mat-icon>menu</mat-icon>
     </button>
-    <div style="padding-left: 25px;">
-      <input type="text" class="input-field" placeholder="Account">
-      <button class="enter-button"><i class="bi bi-arrow-right-circle-fill"></i></button>
-    </div>
+
     <span style="padding-left: 15px;"></span>
     <span class="example-spacer"></span>
     John Smith
@@ -25,8 +22,12 @@
 
   <mat-drawer *ngIf="showToolbarAndDrawer" #drawer class="example-sidenav" mode="side" opened="true">
     <a routerLink="dashboard">
-    <img src="https://auth.pivotel.com.au/pulsar4/assets/img/pulsar4-logo.png" class="sidenav-logo">
-  </a>
+      <img src="https://auth.pivotel.com.au/pulsar4/assets/img/pulsar4-logo.png" class="sidenav-logo">
+    </a>
+    <div class="container-input-custom" style="padding:0px 10px 0px 10px;">
+      <input type="text" class="input-field" placeholder="Account">
+      <button class="enter-button" style="font-size:20px;"><i class="bi bi-arrow-right-circle-fill"></i></button>
+    </div>
     <hr>
     <div class="sidenav-button-container">
       <button routerLink="dashboard" class="sidenav-button" routerLinkActive="active">

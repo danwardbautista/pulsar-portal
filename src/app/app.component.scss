@@ -26,13 +26,18 @@ $lineColor: #d9d7d7;
 }
 
 .example-sidenav {
-    width: 250px;
+    width: 270px;
     background:  var(--main-background-color);
     color: white;
 }
 
+.container-input-custom {
+    display: flex;
+    align-items: center;
+}
+
 .input-field {
-    padding: 5px;
+    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px 0 0 5px;
     flex: 1;

@@ -9,7 +9,7 @@ import { ModalDismissReasons, NgbDatepickerModule, NgbModal } from '@ng-bootstra
   styleUrls: ['./firewall.component.scss']
 })
 export class FirewallComponent {
-  displayedColumns: string[] = ['name', 'inbound', 'outbound', 'action'];
+  displayedColumns: string[] = ['name', 'inbound', 'outbound'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
   constructor(private modalService: NgbModal) { }

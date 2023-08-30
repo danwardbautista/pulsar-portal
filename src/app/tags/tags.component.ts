@@ -9,7 +9,7 @@ import { ModalDismissReasons, NgbDatepickerModule, NgbModal } from '@ng-bootstra
   styleUrls: ['./tags.component.scss']
 })
 export class TagsComponent implements AfterViewInit {
-  displayedColumns: string[] = ['name', 'color', 'description', 'action'];
+  displayedColumns: string[] = ['name', 'color', 'action'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
   constructor(private modalService: NgbModal) { }
