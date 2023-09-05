@@ -9,10 +9,25 @@ import { ModalDismissReasons, NgbDatepickerModule, NgbModal } from '@ng-bootstra
   styleUrls: ['./alerting.component.scss']
 })
 export class AlertingComponent {
+  isCardVisible: boolean = false;
+  display:any;
+
+  toggleCardOpen(elementData:any) {
+    this.display = elementData;
+
+    this.isCardVisible = true;
+  }
+
+  
+  toggleCardClose() {
+    this.isCardVisible = false;
+  }
+
   displayedColumns: string[] = ['name', 'status'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
   constructor(private modalService: NgbModal) { }
+
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 

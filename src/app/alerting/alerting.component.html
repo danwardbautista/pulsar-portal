@@ -33,7 +33,7 @@
         </ng-container> -->
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="clickable-row" (click)="toggleCardOpen(row)"></tr>
     </table>
 
     <mat-paginator [pageSizeOptions]="[10, 15, 20, 50]" showFirstLastButtons aria-label="Select page of periodic elements">
@@ -64,3 +64,21 @@
       </div>
     </form>
   </ng-template>
+
+  <div class="card-container" [ngClass]="{'show-card': isCardVisible}">
+    <div class="card">
+      <button class="close-button" (click)="toggleCardClose()">&times;</button>
+      <!-- Card content goes here -->
+      <p style="font-size: 25px;">{{display?.name}}</p>
+      <p><b>Service ID: </b>{{display?.serviceid}}</p>
+      <p><b>MSISDN: </b>{{display?.msisdn}}</p>
+      <p><b>ICCID: </b>{{display?.iccid}}</p>
+      <p><b>IP Addresses:</b>{{display?.ip}}</p>
+      <hr>
+      <p><b>Package: </b>{{display?.package}}</p>
+      <p><b>Connected: </b>{{display?.connected}}</p>
+      <p><b>Plan Started: </b>{{display?.plan_started}}</p>
+  
+      <button class="btn btn-dark">View more</button>
+    </div>
+  </div>

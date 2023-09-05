@@ -1,93 +1,164 @@
 <div style="float:right;">
-    <mat-form-field appearance="outline">
-        <mat-label>Search</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Filter table" #input>
-    </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Search</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Filter table" #input>
+  </mat-form-field>
 </div>
 
 <div style="padding-top: 10px;padding-bottom: 25px;">
-    <button class="main-button"  (click)="open(content)"><mat-icon style="margin-right: 5px;">library_add</mat-icon>Add
-        Service</button>
-    <br>
+  <button class="main-button" (click)="open(content)"><mat-icon style="margin-right: 5px;">library_add</mat-icon>Add
+    Service</button>
+  <br>
 </div>
 
 <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource">
+  <table mat-table [dataSource]="dataSource">
 
-        <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef> Name </th>
-            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-        </ng-container>
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
 
-        <ng-container matColumnDef="vessel">
-            <th mat-header-cell *matHeaderCellDef> Vessel </th>
-            <td mat-cell *matCellDef="let element"> {{element.vessel}} </td>
-        </ng-container>
+    <ng-container matColumnDef="vessel">
+      <th mat-header-cell *matHeaderCellDef> Vessel </th>
+      <td mat-cell *matCellDef="let element"> {{element.vessel}} </td>
+    </ng-container>
 
-        <ng-container matColumnDef="type">
-            <th mat-header-cell *matHeaderCellDef> Type </th>
-            <td mat-cell *matCellDef="let element"> {{element.type}} </td>
-        </ng-container>
+    <ng-container matColumnDef="type">
+      <th mat-header-cell *matHeaderCellDef> Type </th>
+      <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+    </ng-container>
 
-        <ng-container matColumnDef="msisdn">
-            <th mat-header-cell *matHeaderCellDef> MSISDN </th>
-            <td mat-cell *matCellDef="let element"> {{element.msisdn}} </td>
-        </ng-container>
+    <ng-container matColumnDef="msisdn">
+      <th mat-header-cell *matHeaderCellDef> MSISDN </th>
+      <td mat-cell *matCellDef="let element"> {{element.msisdn}} </td>
+    </ng-container>
 
-        <ng-container matColumnDef="iccid">
-            <th mat-header-cell *matHeaderCellDef> ICCID </th>
-            <td mat-cell *matCellDef="let element"> {{element.iccid}} </td>
-        </ng-container>
-        
-        <ng-container matColumnDef="status">
-            <th mat-header-cell *matHeaderCellDef> Status </th>
-            <td mat-cell *matCellDef="let element"><mat-icon style="color:green">wifi</mat-icon>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<mat-icon style="color:green">lock</mat-icon> </td>
-        </ng-container>
+    <ng-container matColumnDef="iccid">
+      <th mat-header-cell *matHeaderCellDef> ICCID </th>
+      <td mat-cell *matCellDef="let element"> {{element.iccid}} </td>
+    </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="clickable-row" (click)="open(content)"></tr>
-    </table>
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef> Status </th>
+      <td mat-cell *matCellDef="let element"><mat-icon
+          style="color:green">wifi</mat-icon>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<mat-icon
+          style="color:green">lock</mat-icon> </td>
+    </ng-container>
 
-    <mat-paginator [pageSizeOptions]="[10, 15, 20, 50]" showFirstLastButtons aria-label="Select page of periodic elements">
-    </mat-paginator>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="clickable-row" (click)="toggleCardOpen(row)">
+    </tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[10, 15, 20, 50]" showFirstLastButtons
+    aria-label="Select page of periodic elements">
+  </mat-paginator>
 </div>
 
 <ng-template #content let-modal>
-    <div class="modal-header modal-style-header">
-      <div style="font-size: 20px;">Add Services</div>
-      <button style="color:White;" type="button" class="btn-close" aria-label="Close" id="cancel"
-        (click)="modal.dismiss('Cross click')"></button>
-    </div>
-    <form>
-      <div class="modal-body">
-        <mat-label>Name</mat-label>
-        <mat-form-field appearance="outline" style="width: 100%;">
-          <input matInput placeholder="Ex: 167787784">
-        </mat-form-field>
-  
-        <mat-label>Vessel</mat-label>
-        <mat-form-field appearance="outline" style="width: 100%;">
-          <input matInput placeholder="Ex: Starlight Ocean">
-        </mat-form-field>
-  
-        <mat-label>Type</mat-label>
-        <mat-form-field appearance="outline" style="width: 100%;">
-          <input matInput placeholder="Ex: Iridium Data">
-        </mat-form-field>
-  
-        <mat-label>MSISDN</mat-label>
-        <mat-form-field appearance="outline" style="width: 100%;">
-          <input matInput placeholder="Ex: 167787784">
-        </mat-form-field>
+  <div class="modal-header modal-style-header">
+    <div style="font-size: 20px;">Add Services</div>
+    <button style="color:White;" type="button" class="btn-close" aria-label="Close" id="cancel"
+      (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <form>
+    <div class="modal-body">
+      <mat-label>Name</mat-label>
+      <mat-form-field appearance="outline" style="width: 100%;">
+        <input matInput placeholder="Ex: 167787784">
+      </mat-form-field>
 
-        <mat-label>ICCID</mat-label>
-        <mat-form-field appearance="outline" style="width: 100%;">
-          <input matInput placeholder="Ex: 898811144552114">
-        </mat-form-field>
-  
-      </div>
-      <div class="modal-footer">
-        <button type="submit" class="secondary-button">Submit</button>
-      </div>
-    </form>
-  </ng-template>
+      <mat-label>Vessel</mat-label>
+      <mat-form-field appearance="outline" style="width: 100%;">
+        <input matInput placeholder="Ex: Starlight Ocean">
+      </mat-form-field>
+
+      <mat-label>Type</mat-label>
+      <mat-form-field appearance="outline" style="width: 100%;">
+        <input matInput placeholder="Ex: Iridium Data">
+      </mat-form-field>
+
+      <mat-label>MSISDN</mat-label>
+      <mat-form-field appearance="outline" style="width: 100%;">
+        <input matInput placeholder="Ex: 167787784">
+      </mat-form-field>
+
+      <mat-label>ICCID</mat-label>
+      <mat-form-field appearance="outline" style="width: 100%;">
+        <input matInput placeholder="Ex: 898811144552114">
+      </mat-form-field>
+
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="secondary-button">Submit</button>
+    </div>
+  </form>
+</ng-template>
+
+<ng-template #view let-modal>
+  <div class="modal-header modal-style-header">
+    <div style="font-size: 20px;">{{display?.name}}</div>
+    <button style="color:White;" type="button" class="btn-close" aria-label="Close" id="cancel"
+      (click)="modal.dismiss('Cross click')"></button>
+  </div>
+    <div class="modal-body">
+      <mat-card>
+        <mat-card-header>
+          <h1>Activity</h1>
+        </mat-card-header>
+        <mat-card-content>Simple card</mat-card-content>
+      </mat-card>
+      <br>
+      <mat-card>
+        <mat-card-header>
+          <h1>Summary</h1>
+        </mat-card-header>
+        <mat-card-content>
+          <p><b>Service ID: </b>{{display?.serviceid}}</p>
+          <p><b>MSISDN: </b>{{display?.msisdn}}</p>
+          <p><b>ICCID: </b>{{display?.iccid}}</p>
+          <p><b>IP Addresses:</b>{{display?.ip}}</p>
+          <hr>
+          <p><b>Package: </b>{{display?.package}}</p>
+          <p><b>Connected: </b>{{display?.connected}}</p>
+          <p><b>Plan Started: </b>{{display?.plan_started}}</p>
+        </mat-card-content>
+      </mat-card>
+      <br>
+      <mat-card>
+        <mat-card-header>
+          <h1>Groups &amp; Profile</h1>
+        </mat-card-header>
+        <mat-card-content>Simple card</mat-card-content>
+      </mat-card>
+      <br>
+      <mat-card>
+        <mat-card-header>
+          <h1>IP Addresses</h1>
+        </mat-card-header>
+        <mat-card-content>Simple card</mat-card-content>
+      </mat-card>
+    </div>
+    <div class="modal-footer">
+      
+    </div>
+</ng-template>
+
+<div class="card-container" [ngClass]="{'show-card': isCardVisible}">
+  <div class="card">
+    <button class="close-button" (click)="toggleCardClose()">&times;</button>
+    <!-- Card content goes here -->
+    <p style="font-size: 25px;">{{display?.name}}</p>
+    <p><b>Service ID: </b>{{display?.serviceid}}</p>
+    <p><b>MSISDN: </b>{{display?.msisdn}}</p>
+    <p><b>ICCID: </b>{{display?.iccid}}</p>
+    <p><b>IP Addresses:</b>{{display?.ip}}</p>
+    <hr>
+    <p><b>Package: </b>{{display?.package}}</p>
+    <p><b>Connected: </b>{{display?.connected}}</p>
+    <p><b>Plan Started: </b>{{display?.plan_started}}</p>
+
+    <button class="btn btn-dark" (click)="openLg(view)">View more</button>
+  </div>
+</div>
