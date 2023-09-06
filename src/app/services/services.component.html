@@ -1,15 +1,11 @@
-<div style="float:right;">
+<div style="display: flex; justify-content: flex-end;">
   <mat-form-field appearance="outline">
     <mat-label>Search</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Filter table" #input>
   </mat-form-field>
 </div>
 
-<div style="padding-top: 10px;padding-bottom: 25px;">
-  <button class="main-button" (click)="open(content)"><mat-icon style="margin-right: 5px;">library_add</mat-icon>Add
-    Service</button>
-  <br>
-</div>
+<br>
 
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource">
@@ -98,51 +94,125 @@
 
 <ng-template #view let-modal>
   <div class="modal-header modal-style-header">
-    <div style="font-size: 20px;">{{display?.name}}</div>
+    <div style="font-size: 25px;">{{display?.name}}</div>
     <button style="color:White;" type="button" class="btn-close" aria-label="Close" id="cancel"
       (click)="modal.dismiss('Cross click')"></button>
   </div>
-    <div class="modal-body">
-      <mat-card>
-        <mat-card-header>
-          <h1>Activity</h1>
-        </mat-card-header>
-        <mat-card-content>Simple card</mat-card-content>
-      </mat-card>
-      <br>
-      <mat-card>
-        <mat-card-header>
-          <h1>Summary</h1>
-        </mat-card-header>
-        <mat-card-content>
-          <p><b>Service ID: </b>{{display?.serviceid}}</p>
-          <p><b>MSISDN: </b>{{display?.msisdn}}</p>
-          <p><b>ICCID: </b>{{display?.iccid}}</p>
-          <p><b>IP Addresses:</b>{{display?.ip}}</p>
-          <hr>
-          <p><b>Package: </b>{{display?.package}}</p>
-          <p><b>Connected: </b>{{display?.connected}}</p>
-          <p><b>Plan Started: </b>{{display?.plan_started}}</p>
-        </mat-card-content>
-      </mat-card>
-      <br>
-      <mat-card>
-        <mat-card-header>
-          <h1>Groups &amp; Profile</h1>
-        </mat-card-header>
-        <mat-card-content>Simple card</mat-card-content>
-      </mat-card>
-      <br>
-      <mat-card>
-        <mat-card-header>
-          <h1>IP Addresses</h1>
-        </mat-card-header>
-        <mat-card-content>Simple card</mat-card-content>
-      </mat-card>
+  <div class="modal-body">
+
+    <div style="font-size:20px;">
+      <span style="color:rgb(31, 204, 68)"><i class="bi bi-wifi"></i>Online</span> - {{display?.name}}
     </div>
-    <div class="modal-footer">
-      
-    </div>
+    <br>
+
+    <button class="v1-button" style="margin-right:15px;" (click)="open(content)">
+      <i class="bi bi-lock"></i>&nbsp;Bar Service
+    </button>
+
+    <button class="v2-button" (click)="open(content)">
+      <i class="bi bi-list"></i>&nbsp;Data Detail
+    </button>
+
+    <br>
+    <br>
+
+    <mat-card>
+      <mat-card-header>
+        <h1>Notes</h1>
+        <button class="small-button top-right-button" (click)="open(content)">
+          <i class="bi bi-pencil-square"></i>&nbsp;Add Note
+        </button>
+      </mat-card-header>
+      <mat-card-content>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis placerat, mi sit amet dignissim convallis, nibh
+        massa tincidunt justo, quis volutpat ante lacus ut enim. In tempus volutpat condimentum. Integer id blandit
+        libero. Curabitur tristique, nisi in efficitur maximus, arcu tortor interdum risus, at accumsan velit neque eget
+        tortor. Aenean mollis, nunc ut sodales volutpat, lacus lacus gravida turpis, vel interdum arcu lectus non risus.
+        Mauris sagittis magna ligula, ac tempus sem accumsan a. Integer interdum purus quis malesuada condimentum. In
+        rutrum posuere enim, nec finibus nulla dictum at. Quisque euismod molestie mi, vel commodo mauris ultricies ut.
+        Nam vel consectetur nibh.
+      </mat-card-content>
+    </mat-card>
+    <br>
+
+    <mat-card>
+      <mat-card-header>
+        <h1>Tag</h1>
+        <button class="small-button top-right-button" (click)="open(content)">
+          <i class="bi bi-pencil-square"></i>&nbsp;Add Tag
+        </button>
+      </mat-card-header>
+      <mat-card-content>
+
+      </mat-card-content>
+    </mat-card>
+    <br>
+
+    <mat-card>
+      <mat-card-header>
+        <h1>Activity</h1>
+      </mat-card-header>
+      <mat-card-content>
+        <p><b>Billing Period Ends: </b>September 30, 2023 at 10:00:00 PM GMT+8</p>
+        <p><b>Total Data Allowance: </b>10 GB</p>
+        <p><b>Data Allowance Remaining: </b>10 GB</p>
+        <p><b>Plan Usage: </b><mat-progress-bar mode="determinate" value="40"></mat-progress-bar></p>
+        <div class="row">
+          <div class="col">
+            <span style="padding:5px;background-color: rgb(38, 75, 241);color:white;border-radius:7px;">Incoming</span> 0 B
+          </div>
+          <div class="col">
+            <span style="padding:5px;background-color: rgb(38, 143, 241);color:white;border-radius:7px;">Outcoming</span> 0 B
+          </div>
+          <div class="col">
+            <span style="padding:5px;background-color: rgb(34, 34, 34);color:white;border-radius:7px;">Incoming</span> 0 B
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+    <br>
+
+    <mat-card>
+      <mat-card-header>
+        <h1>Summary</h1>
+      </mat-card-header>
+      <mat-card-content>
+        <p><b>Service ID: </b>{{display?.serviceid}}</p>
+        <p><b>MSISDN: </b>{{display?.msisdn}}</p>
+        <p><b>ICCID: </b>{{display?.iccid}}</p>
+        <p><b>IP Addresses:</b>{{display?.ip}}</p>
+        <hr>
+        <p><b>Package: </b>{{display?.package}}</p>
+        <p><b>Connected: </b>{{display?.connected}}</p>
+        <p><b>Plan Started: </b>{{display?.plan_started}}</p>
+      </mat-card-content>
+    </mat-card>
+    <br>
+
+    <mat-card>
+      <mat-card-header>
+        <h1>Groups &amp; Profile</h1>
+      </mat-card-header>
+      <mat-card-content>
+        <p><b>Alert Profile(s): <i class="bi bi-bell"></i>&nbsp;</b>Default Profile</p>
+        <p><b>Barring Profile: <i class="bi bi-lock"></i>&nbsp;</b>Default Profile</p>
+        <p><b>Firewall Profile <i class="bi bi-shield-shaded"></i>&nbsp;</b>Default Profile</p>
+        <p><b>Domain Filter Profile: <i class="bi bi-globe"></i>&nbsp;</b>Default Profile</p>
+      </mat-card-content>
+    </mat-card>
+    <br>
+
+    <mat-card>
+      <mat-card-header>
+        <h1>IP Addresses</h1>
+      </mat-card-header>
+      <mat-card-content>Simple card</mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="modal-footer">
+
+  </div>
 </ng-template>
 
 <div class="card-container" [ngClass]="{'show-card': isCardVisible}">
