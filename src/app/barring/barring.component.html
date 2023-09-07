@@ -1,30 +1,30 @@
 <div style="float:right;">
-    <mat-form-field appearance="outline">
-        <mat-label>Search</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Filter table" #input>
-    </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Search</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Filter table" #input>
+  </mat-form-field>
 </div>
 
 <div style="padding-top: 10px;padding-bottom: 25px;">
-    <button class="main-button"  (click)="open(content)"><mat-icon style="margin-right: 5px;">library_add</mat-icon>Add
-        Barring Profile</button>
-    <br>
+  <button class="main-button" (click)="openLg(content)"><mat-icon style="margin-right: 5px;">library_add</mat-icon>Add
+    Barring Profile</button>
+  <br>
 </div>
 
 <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource">
+  <table mat-table [dataSource]="dataSource">
 
-        <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef> Name </th>
-            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-        </ng-container>
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
 
-        <ng-container matColumnDef="status">
-            <th mat-header-cell *matHeaderCellDef> Status </th>
-            <td mat-cell *matCellDef="let element" style="color:rgb(12, 180, 12);font-weight:700;"> {{element.status}} </td>
-        </ng-container>
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef> Status </th>
+      <td mat-cell *matCellDef="let element" style="color:rgb(12, 180, 12);font-weight:700;"> {{element.status}} </td>
+    </ng-container>
 
-        <!-- <ng-container matColumnDef="action">
+    <!-- <ng-container matColumnDef="action">
             <th mat-header-cell *matHeaderCellDef> Action </th>
             <td mat-cell *matCellDef="let element" style="width:200px "> 
                 <button class="secondary-button" style="margin-right:5px;">Edit</button> 
@@ -32,35 +32,104 @@
             </td>
         </ng-container> -->
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
 
-    <mat-paginator [pageSizeOptions]="[10, 15, 20, 50]" showFirstLastButtons aria-label="Select page of periodic elements">
-    </mat-paginator>
+  <mat-paginator [pageSizeOptions]="[10, 15, 20, 50]" showFirstLastButtons
+    aria-label="Select page of periodic elements">
+  </mat-paginator>
 </div>
 
 <ng-template #content let-modal>
-    <div class="modal-header modal-style-header">
-      <div style="font-size: 20px;">Add Alert</div>
-      <button style="color:White;" type="button" class="btn-close" aria-label="Close" id="cancel"
-        (click)="modal.dismiss('Cross click')"></button>
+  <div class="modal-header modal-style-header">
+    <div style="font-size: 20px;">Create Barring Profile</div>
+    <button style="color:White;" type="button" class="btn-close" aria-label="Close" id="cancel"
+      (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <form>
+    <div class="modal-body">
+      <div class="form-box-container">
+        <div class="form-box-header">
+          Profile Details
+        </div>
+        <div class="form-box-content">
+          <mat-label>Name</mat-label>
+          <mat-form-field appearance="outline" style="width: 100%;">
+            <input matInput placeholder="Ex: Service">
+          </mat-form-field>
+
+          <mat-label>Status</mat-label>
+          <br>
+          <mat-radio-group aria-label="Select an option">
+            <mat-radio-button value="enabled">Enabled</mat-radio-button>
+            <mat-radio-button value="disabled">Disabled</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="form-box-container">
+        <div class="form-box-header">
+          Conditions
+        </div>
+        <div class="form-box-content">
+          <div class="row">
+            <div class="col">
+              <mat-label>When</mat-label>
+              <br>
+              <mat-form-field appearance="outline" style="width: 100%;">
+                <!-- <mat-label>Cars</mat-label> -->
+                <mat-select>
+                  <mat-option value="Volume">Volume</mat-option>
+                  <mat-option value="Allowance">Allowance</mat-option>
+                  <mat-option value="Service Bar Status Manually Changed">Service Bar Status Manually Changed</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col">
+              <mat-label>Exceeds</mat-label>
+              <mat-form-field appearance="outline" style="width: 100%;">
+                <input matInput placeholder="Ex: Input">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="form-box-container">
+        <div class="form-box-header">
+          Notify
+        </div>
+        <div class="form-box-content">
+          <div class="row">
+            <div class="col">
+              <mat-label>Message Type</mat-label>
+              <br>
+              <mat-form-field appearance="outline" style="width: 100%;">
+                <!-- <mat-label>Cars</mat-label> -->
+                <mat-select>
+                  <mat-option value="Email">Email</mat-option>
+                  <mat-option value="Text Message">Text Message</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col">
+              <mat-label>Desination</mat-label>
+              <mat-form-field appearance="outline" style="width: 100%;">
+                <input matInput placeholder="Ex: person@example.com">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
-    <form>
-      <div class="modal-body">
-        <mat-label>Name</mat-label>
-        <mat-form-field appearance="outline" style="width: 100%;">
-          <input matInput placeholder="Ex: Service">
-        </mat-form-field>
-  
-        <mat-label>Status</mat-label>
-        <mat-form-field appearance="outline" style="width: 100%;">
-          <input matInput placeholder="Ex: This template is for a service">
-        </mat-form-field>
-  
-      </div>
-      <div class="modal-footer">
-        <button type="submit" class="secondary-button">Submit</button>
-      </div>
-    </form>
-  </ng-template>
+    <div class="modal-footer">
+      <button type="submit" class="secondary-button">Submit</button>
+    </div>
+  </form>
+</ng-template>

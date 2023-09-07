@@ -9,6 +9,20 @@ import { ModalDismissReasons, NgbDatepickerModule, NgbModal } from '@ng-bootstra
   styleUrls: ['./firewall.component.scss']
 })
 export class FirewallComponent {
+  isCardVisible: boolean = false;
+  display:any;
+
+  toggleCardOpen(elementData:any) {
+    this.display = elementData;
+
+    this.isCardVisible = true;
+  }
+
+  
+  toggleCardClose() {
+    this.isCardVisible = false;
+  }
+  
   displayedColumns: string[] = ['name', 'inbound', 'outbound'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 

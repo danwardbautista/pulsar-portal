@@ -33,7 +33,7 @@
         </ng-container> -->
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="clickable-row" (click)="toggleCardOpen(row)">
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
     </tr>
   </table>
 
@@ -82,12 +82,12 @@
               <br>
               <mat-form-field appearance="outline" style="width: 100%;">
                 <!-- <mat-label>Cars</mat-label> -->
-                <select matNativeControl required>
-                  <option value="Volume">Volume</option>
-                  <option value="Volume Tracker">Volume Tracker</option>
-                  <option value="Allowance">Allowance</option>
-                  <option value="Service Bar Status Manually Changed">Service Bar Status Manually Changed</option>
-                </select>
+                <mat-select>
+                  <mat-option value="Volume">Volume</mat-option>
+                  <mat-option value="Volume Tracker">Volume Tracker</mat-option>
+                  <mat-option value="Allowance">Allowance</mat-option>
+                  <mat-option value="Service Bar Status Manually Changed">Service Bar Status Manually Changed</mat-option>
+                </mat-select>
               </mat-form-field>
             </div>
             <div class="col">
@@ -113,10 +113,10 @@
               <br>
               <mat-form-field appearance="outline" style="width: 100%;">
                 <!-- <mat-label>Cars</mat-label> -->
-                <select matNativeControl required>
-                  <option value="Email">Email</option>
-                  <option value="Text Message">Text Message</option>
-                </select>
+                <mat-select>
+                  <mat-option value="Email">Email</mat-option>
+                  <mat-option value="Text Message">Text Message</mat-option>
+                </mat-select>
               </mat-form-field>
             </div>
             <div class="col">

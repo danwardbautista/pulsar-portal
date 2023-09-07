@@ -384,9 +384,11 @@ $logout-color: #f3f3f3;
 }
 
 .form-box-container{
-	padding:15px;
+	padding:20px;
 	border:1px solid rgba(5, 5, 5, 0.37);
 	border-radius: 7px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Box shadow for the material effect */
+	border: 1px solid #e0e0e0; /* Border color and width */
 }
 
 .form-box-header{

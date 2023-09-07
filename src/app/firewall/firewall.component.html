@@ -6,7 +6,7 @@
 </div>
 
 <div style="padding-top: 10px;padding-bottom: 25px;">
-    <button class="main-button"  (click)="open(content)"><mat-icon style="margin-right: 5px;">library_add</mat-icon>Add
+    <button class="main-button"  (click)="openXl(content)"><mat-icon style="margin-right: 5px;">library_add</mat-icon>Add
         Firewall Profile</button>
     <br>
 </div>
@@ -38,7 +38,7 @@
         </ng-container> -->
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="clickable-row" (click)="toggleCardOpen(row)"></tr>
     </table>
 
     <mat-paginator [pageSizeOptions]="[10, 15, 20, 50]" showFirstLastButtons aria-label="Select page of periodic elements">
@@ -46,26 +46,101 @@
 </div>
 
 <ng-template #content let-modal>
-    <div class="modal-header modal-style-header">
-      <div style="font-size: 20px;">Add Alert</div>
-      <button style="color:White;" type="button" class="btn-close" aria-label="Close" id="cancel"
-        (click)="modal.dismiss('Cross click')"></button>
+  <div class="modal-header modal-style-header">
+    <div style="font-size: 20px;">Create Firewall Profile</div>
+    <button style="color:White;" type="button" class="btn-close" aria-label="Close" id="cancel"
+      (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <form>
+    <div class="modal-body">
+      <div class="form-box-container">
+        <div class="form-box-header">
+          Basic Details
+        </div>
+        <div class="form-box-content">
+          <mat-label>Name</mat-label>
+          <mat-form-field appearance="outline" style="width: 100%;">
+            <input matInput placeholder="Ex: Block YouTube">
+          </mat-form-field>
+
+          <mat-label>Description</mat-label>
+          <mat-form-field appearance="outline" style="width: 100%;">
+            <textarea matInput placeholder="Ex: This firewall will block YouTube"></textarea>
+          </mat-form-field>
+
+          
+        </div>
+      </div>
+
+      <br>
+
+      <div class="form-box-container">
+        <div class="form-box-header">
+          Outbound Traffic Rules
+        </div>
+        <div class="form-box-content">
+          <mat-label>All outbound traffic</mat-label>
+          <br>
+          <mat-radio-group aria-label="Select an option">
+            <mat-radio-button value="enabled">Deny</mat-radio-button>
+            <mat-radio-button value="disabled">Allow</mat-radio-button>
+          </mat-radio-group>
+          <br>
+          <h3>Exceptions</h3>
+          <div class="row">
+            <div class="col">
+              <mat-label>Preset Services</mat-label>
+              <br>
+              <mat-form-field appearance="outline" style="width: 100%;">
+                <!-- <mat-label>Cars</mat-label> -->
+                <mat-select>
+                  <mat-option value="Volume">Volume</mat-option>
+                  <mat-option value="Volume Tracker">Volume Tracker</mat-option>
+                  <mat-option value="Allowance">Allowance</mat-option>
+                  <mat-option value="Service Bar Status Manually Changed">Service Bar Status Manually Changed</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col">
+              <mat-label>Protocol</mat-label>
+              <br>
+              <mat-form-field appearance="outline" style="width: 100%;">
+                <!-- <mat-label>Cars</mat-label> -->
+                <mat-select>
+                  <mat-option value="Volume">Volume</mat-option>
+                  <mat-option value="Volume Tracker">Volume Tracker</mat-option>
+                  <mat-option value="Allowance">Allowance</mat-option>
+                  <mat-option value="Service Bar Status Manually Changed">Service Bar Status Manually Changed</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
-    <form>
-      <div class="modal-body">
-        <mat-label>Name</mat-label>
-        <mat-form-field appearance="outline" style="width: 100%;">
-          <input matInput placeholder="Ex: Service">
-        </mat-form-field>
-  
-        <mat-label>Status</mat-label>
-        <mat-form-field appearance="outline" style="width: 100%;">
-          <input matInput placeholder="Ex: This template is for a service">
-        </mat-form-field>
-  
-      </div>
-      <div class="modal-footer">
-        <button type="submit" class="secondary-button">Submit</button>
-      </div>
-    </form>
-  </ng-template>
+    <div class="modal-footer">
+      <button type="submit" class="secondary-button">Submit</button>
+    </div>
+  </form>
+</ng-template>
+
+<div class="card-container" [ngClass]="{'show-card': isCardVisible}">
+  <div class="card">
+    <button class="close-button" (click)="toggleCardClose()">&times;</button>
+    <!-- Card content goes here -->
+    <p style="font-size: 25px;">{{display?.name}}</p>
+    
+    <mat-tab-group>
+      <mat-tab label="Summary"> 
+        <p><b>Last Updated </b>August 25, 2022 at 5:28:23 AM GMT+8</p>
+        <p><b>Status: </b>Configured</p>
+        <p><b>Last Configured:</b>August 25, 2022 at 5:28:23 AM GMT+8</p>
+      </mat-tab>
+      <mat-tab label="Outbound"> Content 2 </mat-tab>
+      <mat-tab label="Inbound"> Content 3 </mat-tab>
+      <mat-tab label="Services"> Content 4 </mat-tab>
+    </mat-tab-group>
+    <!-- <button class="btn btn-dark">View more</button> -->
+  </div>
+</div>
