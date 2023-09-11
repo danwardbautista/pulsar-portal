@@ -1,35 +1,37 @@
 <div style="float:right;">
-    <mat-form-field appearance="outline">
-        <mat-label>Search</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Filter table" #input>
-    </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Search</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Filter table" #input>
+  </mat-form-field>
 </div>
 
 <div style="padding-top: 10px;padding-bottom: 25px;">
-    <button class="main-button"  (click)="openXl(content)"><mat-icon style="margin-right: 5px;">library_add</mat-icon>Add
-        Firewall Profile</button>
-    <br>
+  <button class="main-button" (click)="openXl(content)"><mat-icon style="margin-right: 5px;">library_add</mat-icon>Add
+    Firewall Profile</button>
+  <br>
 </div>
 
 <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource">
+  <table mat-table [dataSource]="dataSource">
 
-        <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef> Name </th>
-            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-        </ng-container>
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
 
-        <ng-container matColumnDef="outbound">
-            <th mat-header-cell *matHeaderCellDef> Outbound </th>
-            <td mat-cell *matCellDef="let element" style="color:rgb(19, 48, 175);font-weight:500;text-decoration: underline;"> {{element.outbound}} </td>
-        </ng-container>
+    <ng-container matColumnDef="outbound">
+      <th mat-header-cell *matHeaderCellDef> Outbound </th>
+      <td mat-cell *matCellDef="let element" style="color:rgb(19, 48, 175);font-weight:500;text-decoration: underline;">
+        {{element.outbound}} </td>
+    </ng-container>
 
-        <ng-container matColumnDef="inbound">
-            <th mat-header-cell *matHeaderCellDef> Inbound </th>
-            <td mat-cell *matCellDef="let element" style="color:rgb(19, 48, 175);font-weight:500;text-decoration: underline;"> {{element.inbound}} </td>
-        </ng-container>
+    <ng-container matColumnDef="inbound">
+      <th mat-header-cell *matHeaderCellDef> Inbound </th>
+      <td mat-cell *matCellDef="let element" style="color:rgb(19, 48, 175);font-weight:500;text-decoration: underline;">
+        {{element.inbound}} </td>
+    </ng-container>
 
-        <!-- <ng-container matColumnDef="action">
+    <!-- <ng-container matColumnDef="action">
             <th mat-header-cell *matHeaderCellDef> Action </th>
             <td mat-cell *matCellDef="let element" style="width:200px "> 
                 <button class="secondary-button" style="margin-right:5px;">Edit</button> 
@@ -37,12 +39,14 @@
             </td>
         </ng-container> -->
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="clickable-row" (click)="toggleCardOpen(row)"></tr>
-    </table>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="clickable-row" (click)="toggleCardOpen(row)">
+    </tr>
+  </table>
 
-    <mat-paginator [pageSizeOptions]="[10, 15, 20, 50]" showFirstLastButtons aria-label="Select page of periodic elements">
-    </mat-paginator>
+  <mat-paginator [pageSizeOptions]="[10, 15, 20, 50]" showFirstLastButtons
+    aria-label="Select page of periodic elements">
+  </mat-paginator>
 </div>
 
 <ng-template #content let-modal>
@@ -68,10 +72,9 @@
             <textarea matInput placeholder="Ex: This firewall will block YouTube"></textarea>
           </mat-form-field>
 
-          
+
         </div>
       </div>
-
       <br>
 
       <div class="form-box-container">
@@ -82,37 +85,431 @@
           <mat-label>All outbound traffic</mat-label>
           <br>
           <mat-radio-group aria-label="Select an option">
-            <mat-radio-button value="enabled">Deny</mat-radio-button>
-            <mat-radio-button value="disabled">Allow</mat-radio-button>
+            <mat-radio-button value="enabled"><span
+                style="padding:5px;background-color: rgb(192, 6, 6);color:white;border-radius: 7px;">Deny</span></mat-radio-button>
+            <mat-radio-button value="enabled"><span
+                style="padding:5px;background-color: rgb(6, 192, 52);color:white;border-radius: 7px;">Allow</span></mat-radio-button>
           </mat-radio-group>
           <br>
-          <h3>Exceptions</h3>
-          <div class="row">
-            <div class="col">
+          <h3><b>Exceptions</b></h3>
+          <div class="row" *ngFor="let row of rows; let i = index">
+            <div class="col-sm-2">
               <mat-label>Preset Services</mat-label>
               <br>
               <mat-form-field appearance="outline" style="width: 100%;">
-                <!-- <mat-label>Cars</mat-label> -->
-                <mat-select>
-                  <mat-option value="Volume">Volume</mat-option>
-                  <mat-option value="Volume Tracker">Volume Tracker</mat-option>
-                  <mat-option value="Allowance">Allowance</mat-option>
-                  <mat-option value="Service Bar Status Manually Changed">Service Bar Status Manually Changed</mat-option>
+                <mat-select [(ngModel)]="selectedPresetService" name="presetService">
+                  <mat-option value="custom" default>Custom Rule</mat-option>
+                  <h3 style="font-weight:bold;margin-left: 10px;">HTTP</h3>
+                  <mat-option value="HTTP">HTTP</mat-option>
+                  <mat-option value="HTTPS">HTTPS</mat-option>
+                  <mat-option value="HTTPUDP">HTTP (UDP)</mat-option>
+                  <mat-option value="HTTPSUDP">HTTPS (UDP)</mat-option>
+                  <h3 style="font-weight:bold;margin-left: 10px;">Other Protocols</h3>
+                  <mat-option value="FTP">FTP</mat-option>
+                  <mat-option value="NTP">NTP</mat-option>
+                  <mat-option value="POP3">POP3</mat-option>
+                  <mat-option value="SIP">SIP</mat-option>
+                  <mat-option value="SMTP">SMTP</mat-option>
+                  <mat-option value="SNMP">SNMP</mat-option>
+                  <mat-option value="SSH">SSH</mat-option>
+                  <mat-option value="TELNET">TELNET</mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
-            <div class="col">
+            <div class="col-sm-2">
               <mat-label>Protocol</mat-label>
               <br>
               <mat-form-field appearance="outline" style="width: 100%;">
-                <!-- <mat-label>Cars</mat-label> -->
-                <mat-select>
-                  <mat-option value="Volume">Volume</mat-option>
-                  <mat-option value="Volume Tracker">Volume Tracker</mat-option>
-                  <mat-option value="Allowance">Allowance</mat-option>
-                  <mat-option value="Service Bar Status Manually Changed">Service Bar Status Manually Changed</mat-option>
+                <mat-select [(ngModel)]="presetServiceValues[selectedPresetService].protocol" name="protocol"
+                  [disabled]="selectedPresetService !== 'custom'">
+                  <mat-option value="">ANY</mat-option>
+                  <mat-option value="0">IP</mat-option>
+                  <mat-option value="1">ICMP</mat-option>
+                  <mat-option value="2">IGMP</mat-option>
+                  <mat-option value="3">GGP</mat-option>
+                  <mat-option value="4">IP-ENCAP</mat-option>
+                  <mat-option value="5">ST2</mat-option>
+                  <mat-option value="6">TCP</mat-option>
+                  <mat-option value="7">CBT</mat-option>
+                  <mat-option value="8">EGP</mat-option>
+                  <mat-option value="9">IGP</mat-option>
+                  <mat-option value="10">BBN-RCC-MON</mat-option>
+                  <mat-option value="11">NVP-II</mat-option>
+                  <mat-option value="12">PUP</mat-option>
+                  <mat-option value="13">ARGUS</mat-option>
+                  <mat-option value="14">EMCON</mat-option>
+                  <mat-option value="15">XNET</mat-option>
+                  <mat-option value="16">CHAOS</mat-option>
+                  <mat-option value="17">UDP</mat-option>
+                  <mat-option value="18">MUX</mat-option>
+                  <mat-option value="19">DCN-MEAS</mat-option>
+                  <mat-option value="20">HMP</mat-option>
+                  <mat-option value="21">PRM</mat-option>
+                  <mat-option value="22">XNS-IDP</mat-option>
+                  <mat-option value="23">TRUNK-1</mat-option>
+                  <mat-option value="24">TRUNK-2</mat-option>
+                  <mat-option value="25">LEAF-1</mat-option>
+                  <mat-option value="26">LEAF-2</mat-option>
+                  <mat-option value="27">RDP</mat-option>
+                  <mat-option value="28">IRTP</mat-option>
+                  <mat-option value="29">ISO-TP4</mat-option>
+                  <mat-option value="30">NETBLT</mat-option>
+                  <mat-option value="31">MFE-NSP</mat-option>
+                  <mat-option value="32">MERIT-INP</mat-option>
+                  <mat-option value="33">DCCP</mat-option>
+                  <mat-option value="34">3PC</mat-option>
+                  <mat-option value="35">IDPR</mat-option>
+                  <mat-option value="36">XTP</mat-option>
+                  <mat-option value="37">DDP</mat-option>
+                  <mat-option value="38">IDPR-CMTP</mat-option>
+                  <mat-option value="39">TP++</mat-option>
+                  <mat-option value="40">IL</mat-option>
+                  <mat-option value="41">IPV6</mat-option>
+                  <mat-option value="42">SDRP</mat-option>
+                  <mat-option value="43">IPV6-ROUTE</mat-option>
+                  <mat-option value="44">IPV6-FRAG</mat-option>
+                  <mat-option value="45">IDRP</mat-option>
+                  <mat-option value="46">RSVP</mat-option>
+                  <mat-option value="47">GRE</mat-option>
+                  <mat-option value="48">DSR</mat-option>
+                  <mat-option value="49">BNA</mat-option>
+                  <mat-option value="50">ESP</mat-option>
+                  <mat-option value="51">AH</mat-option>
+                  <mat-option value="52">I-NLSP</mat-option>
+                  <mat-option value="53">SWIPE</mat-option>
+                  <mat-option value="54">NARP</mat-option>
+                  <mat-option value="55">MOBILE</mat-option>
+                  <mat-option value="56">TLSP</mat-option>
+                  <mat-option value="57">SKIP</mat-option>
+                  <mat-option value="58">IPV6-ICMP</mat-option>
+                  <mat-option value="59">IPV6-NONXT</mat-option>
+                  <mat-option value="60">IPV6-OPTS</mat-option>
+                  <mat-option value="62">CFTP</mat-option>
+                  <mat-option value="64">SAT-EXPAK</mat-option>
+                  <mat-option value="65">KRYPTOLAN</mat-option>
+                  <mat-option value="66">RVD</mat-option>
+                  <mat-option value="67">IPPC</mat-option>
+                  <mat-option value="69">SAT-MON</mat-option>
+                  <mat-option value="70">VISA</mat-option>
+                  <mat-option value="71">IPCV</mat-option>
+                  <mat-option value="72">CPNX</mat-option>
+                  <mat-option value="73">CPHB</mat-option>
+                  <mat-option value="74">WSN</mat-option>
+                  <mat-option value="75">PVP</mat-option>
+                  <mat-option value="76">BR-SAT-MON</mat-option>
+                  <mat-option value="77">SUN-ND</mat-option>
+                  <mat-option value="78">WB-MON</mat-option>
+                  <mat-option value="79">WB-EXPAK</mat-option>
+                  <mat-option value="80">ISO-IP</mat-option>
+                  <mat-option value="81">VMTP</mat-option>
+                  <mat-option value="82">SECURE-VMTP</mat-option>
+                  <mat-option value="83">VINES</mat-option>
+                  <mat-option value="84">TTP</mat-option>
+                  <mat-option value="85">NSFNET-IGP</mat-option>
+                  <mat-option value="86">DGP</mat-option>
+                  <mat-option value="87">TCF</mat-option>
+                  <mat-option value="88">EIGRP</mat-option>
+                  <mat-option value="89">OSPFIGP</mat-option>
+                  <mat-option value="90">Sprite-RPC</mat-option>
+                  <mat-option value="91">LARP</mat-option>
+                  <mat-option value="92">MTP</mat-option>
+                  <mat-option value="93">AX.25</mat-option>
+                  <mat-option value="94">IPIP</mat-option>
+                  <mat-option value="95">MICP</mat-option>
+                  <mat-option value="96">SCC-SP</mat-option>
+                  <mat-option value="97">ETHERIP</mat-option>
+                  <mat-option value="98">ENCAP</mat-option>
+                  <mat-option value="100">GMTP</mat-option>
+                  <mat-option value="101">IFMP</mat-option>
+                  <mat-option value="102">PNNI</mat-option>
+                  <mat-option value="103">PIM</mat-option>
+                  <mat-option value="104">ARIS</mat-option>
+                  <mat-option value="105">SCPS</mat-option>
+                  <mat-option value="106">QNX</mat-option>
+                  <mat-option value="107">A/N</mat-option>
+                  <mat-option value="108">IPComp</mat-option>
+                  <mat-option value="109">SNP</mat-option>
+                  <mat-option value="110">Compaq-Peer</mat-option>
+                  <mat-option value="111">IPX-in-IP</mat-option>
+                  <mat-option value="112">CARP</mat-option>
+                  <mat-option value="113">PGM</mat-option>
+                  <mat-option value="115">L2TP</mat-option>
+                  <mat-option value="116">DDX</mat-option>
+                  <mat-option value="117">IATP</mat-option>
+                  <mat-option value="118">STP</mat-option>
+                  <mat-option value="119">SRP</mat-option>
+                  <mat-option value="120">UTI</mat-option>
+                  <mat-option value="121">SMP</mat-option>
+                  <mat-option value="122">SM</mat-option>
+                  <mat-option value="123">PTP</mat-option>
+                  <mat-option value="124">ISIS</mat-option>
+                  <mat-option value="125">FIRE</mat-option>
+                  <mat-option value="126">CRTP</mat-option>
+                  <mat-option value="127">CRUDP</mat-option>
+                  <mat-option value="128">SSCOPMCE</mat-option>
+                  <mat-option value="129">IPLT</mat-option>
+                  <mat-option value="130">SPS</mat-option>
+                  <mat-option value="131">PIPE</mat-option>
+                  <mat-option value="132">SCTP</mat-option>
+                  <mat-option value="133">FC</mat-option>
+                  <mat-option value="134">RSVP-E2E-IGNORE</mat-option>
+                  <mat-option value="135">Mobility-Header</mat-option>
+                  <mat-option value="136">UDPLite</mat-option>
+                  <mat-option value="137">MPLS-IN-IP</mat-option>
+                  <mat-option value="138">MANET</mat-option>
+                  <mat-option value="139">HIP</mat-option>
+                  <mat-option value="140">SHIM6</mat-option>
+                  <mat-option value="141">WESP</mat-option>
+                  <mat-option value="142">ROHC</mat-option>
+                  <mat-option value="240">PFSYNC</mat-option>
                 </mat-select>
               </mat-form-field>
+            </div>
+            <div class="col-sm-2">
+              <mat-label>Port Range</mat-label>
+              <mat-form-field appearance="outline" style="width: 100%;">
+                <input matInput placeholder="1 - 65535"
+                  [(ngModel)]="presetServiceValues[selectedPresetService].portRange" name="portRange"
+                  [disabled]="selectedPresetService !== 'custom'">
+              </mat-form-field>
+            </div>
+            <div class="col-sm-3">
+              <mat-label>Remote Address</mat-label>
+              <mat-form-field appearance="outline" style="width: 100%;">
+                <input matInput placeholder="0.0.0.0/0">
+              </mat-form-field>
+            </div>
+            <div class="col-sm-2">
+              <mat-label>Description</mat-label>
+              <mat-form-field appearance="outline" style="width: 100%;">
+                <input matInput placeholder="Description">
+              </mat-form-field>
+            </div>
+            <div class="col-sm-1">
+              <button (click)="addRow()" class="small-button" style="margin-bottom: 3px;"><i
+                  class="bi bi-plus-square-fill"></i>&nbsp;Add</button>
+              <button (click)="deleteRow(i)" class="error-button" [disabled]="rows.length === 1"><i
+                  class="bi bi-trash3-fill"></i>&nbsp;Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="form-box-container">
+        <div class="form-box-header">
+          Inbound Traffic Rules
+        </div>
+        <div class="form-box-content">
+          <mat-label>All inbound traffic</mat-label>
+          <br>
+          <mat-radio-group aria-label="Select an option">
+            <mat-radio-button value="enabled"><span
+                style="padding:5px;background-color: rgb(192, 6, 6);color:white;border-radius: 7px;">Deny</span></mat-radio-button>
+            <mat-radio-button value="enabled"><span
+                style="padding:5px;background-color: rgb(6, 192, 52);color:white;border-radius: 7px;">Allow</span></mat-radio-button>
+          </mat-radio-group>
+          <br>
+          <h3><b>Exceptions</b></h3>
+          <div class="row" *ngFor="let row2 of rows2; let i = index">
+            <div class="col-sm-2">
+              <mat-label>Preset Services</mat-label>
+              <br>
+              <mat-form-field appearance="outline" style="width: 100%;">
+                <mat-select [(ngModel)]="selectedPresetService2" name="presetService">
+                  <mat-option value="custom" default>Custom Rule</mat-option>
+                  <h3 style="font-weight:bold;margin-left: 10px;">HTTP</h3>
+                  <mat-option value="HTTP">HTTP</mat-option>
+                  <mat-option value="HTTPS">HTTPS</mat-option>
+                  <mat-option value="HTTPUDP">HTTP (UDP)</mat-option>
+                  <mat-option value="HTTPSUDP">HTTPS (UDP)</mat-option>
+                  <h3 style="font-weight:bold;margin-left: 10px;">Other Protocols</h3>
+                  <mat-option value="FTP">FTP</mat-option>
+                  <mat-option value="NTP">NTP</mat-option>
+                  <mat-option value="POP3">POP3</mat-option>
+                  <mat-option value="SIP">SIP</mat-option>
+                  <mat-option value="SMTP">SMTP</mat-option>
+                  <mat-option value="SNMP">SNMP</mat-option>
+                  <mat-option value="SSH">SSH</mat-option>
+                  <mat-option value="TELNET">TELNET</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-sm-2">
+              <mat-label>Protocol</mat-label>
+              <br>
+              <mat-form-field appearance="outline" style="width: 100%;">
+                <mat-select [(ngModel)]="presetServiceValues2[selectedPresetService2].protocol" name="protocol2"
+                  [disabled]="selectedPresetService2 !== 'custom'">
+                  <mat-option value="">ANY</mat-option>
+                  <mat-option value="0">IP</mat-option>
+                  <mat-option value="1">ICMP</mat-option>
+                  <mat-option value="2">IGMP</mat-option>
+                  <mat-option value="3">GGP</mat-option>
+                  <mat-option value="4">IP-ENCAP</mat-option>
+                  <mat-option value="5">ST2</mat-option>
+                  <mat-option value="6">TCP</mat-option>
+                  <mat-option value="7">CBT</mat-option>
+                  <mat-option value="8">EGP</mat-option>
+                  <mat-option value="9">IGP</mat-option>
+                  <mat-option value="10">BBN-RCC-MON</mat-option>
+                  <mat-option value="11">NVP-II</mat-option>
+                  <mat-option value="12">PUP</mat-option>
+                  <mat-option value="13">ARGUS</mat-option>
+                  <mat-option value="14">EMCON</mat-option>
+                  <mat-option value="15">XNET</mat-option>
+                  <mat-option value="16">CHAOS</mat-option>
+                  <mat-option value="17">UDP</mat-option>
+                  <mat-option value="18">MUX</mat-option>
+                  <mat-option value="19">DCN-MEAS</mat-option>
+                  <mat-option value="20">HMP</mat-option>
+                  <mat-option value="21">PRM</mat-option>
+                  <mat-option value="22">XNS-IDP</mat-option>
+                  <mat-option value="23">TRUNK-1</mat-option>
+                  <mat-option value="24">TRUNK-2</mat-option>
+                  <mat-option value="25">LEAF-1</mat-option>
+                  <mat-option value="26">LEAF-2</mat-option>
+                  <mat-option value="27">RDP</mat-option>
+                  <mat-option value="28">IRTP</mat-option>
+                  <mat-option value="29">ISO-TP4</mat-option>
+                  <mat-option value="30">NETBLT</mat-option>
+                  <mat-option value="31">MFE-NSP</mat-option>
+                  <mat-option value="32">MERIT-INP</mat-option>
+                  <mat-option value="33">DCCP</mat-option>
+                  <mat-option value="34">3PC</mat-option>
+                  <mat-option value="35">IDPR</mat-option>
+                  <mat-option value="36">XTP</mat-option>
+                  <mat-option value="37">DDP</mat-option>
+                  <mat-option value="38">IDPR-CMTP</mat-option>
+                  <mat-option value="39">TP++</mat-option>
+                  <mat-option value="40">IL</mat-option>
+                  <mat-option value="41">IPV6</mat-option>
+                  <mat-option value="42">SDRP</mat-option>
+                  <mat-option value="43">IPV6-ROUTE</mat-option>
+                  <mat-option value="44">IPV6-FRAG</mat-option>
+                  <mat-option value="45">IDRP</mat-option>
+                  <mat-option value="46">RSVP</mat-option>
+                  <mat-option value="47">GRE</mat-option>
+                  <mat-option value="48">DSR</mat-option>
+                  <mat-option value="49">BNA</mat-option>
+                  <mat-option value="50">ESP</mat-option>
+                  <mat-option value="51">AH</mat-option>
+                  <mat-option value="52">I-NLSP</mat-option>
+                  <mat-option value="53">SWIPE</mat-option>
+                  <mat-option value="54">NARP</mat-option>
+                  <mat-option value="55">MOBILE</mat-option>
+                  <mat-option value="56">TLSP</mat-option>
+                  <mat-option value="57">SKIP</mat-option>
+                  <mat-option value="58">IPV6-ICMP</mat-option>
+                  <mat-option value="59">IPV6-NONXT</mat-option>
+                  <mat-option value="60">IPV6-OPTS</mat-option>
+                  <mat-option value="62">CFTP</mat-option>
+                  <mat-option value="64">SAT-EXPAK</mat-option>
+                  <mat-option value="65">KRYPTOLAN</mat-option>
+                  <mat-option value="66">RVD</mat-option>
+                  <mat-option value="67">IPPC</mat-option>
+                  <mat-option value="69">SAT-MON</mat-option>
+                  <mat-option value="70">VISA</mat-option>
+                  <mat-option value="71">IPCV</mat-option>
+                  <mat-option value="72">CPNX</mat-option>
+                  <mat-option value="73">CPHB</mat-option>
+                  <mat-option value="74">WSN</mat-option>
+                  <mat-option value="75">PVP</mat-option>
+                  <mat-option value="76">BR-SAT-MON</mat-option>
+                  <mat-option value="77">SUN-ND</mat-option>
+                  <mat-option value="78">WB-MON</mat-option>
+                  <mat-option value="79">WB-EXPAK</mat-option>
+                  <mat-option value="80">ISO-IP</mat-option>
+                  <mat-option value="81">VMTP</mat-option>
+                  <mat-option value="82">SECURE-VMTP</mat-option>
+                  <mat-option value="83">VINES</mat-option>
+                  <mat-option value="84">TTP</mat-option>
+                  <mat-option value="85">NSFNET-IGP</mat-option>
+                  <mat-option value="86">DGP</mat-option>
+                  <mat-option value="87">TCF</mat-option>
+                  <mat-option value="88">EIGRP</mat-option>
+                  <mat-option value="89">OSPFIGP</mat-option>
+                  <mat-option value="90">Sprite-RPC</mat-option>
+                  <mat-option value="91">LARP</mat-option>
+                  <mat-option value="92">MTP</mat-option>
+                  <mat-option value="93">AX.25</mat-option>
+                  <mat-option value="94">IPIP</mat-option>
+                  <mat-option value="95">MICP</mat-option>
+                  <mat-option value="96">SCC-SP</mat-option>
+                  <mat-option value="97">ETHERIP</mat-option>
+                  <mat-option value="98">ENCAP</mat-option>
+                  <mat-option value="100">GMTP</mat-option>
+                  <mat-option value="101">IFMP</mat-option>
+                  <mat-option value="102">PNNI</mat-option>
+                  <mat-option value="103">PIM</mat-option>
+                  <mat-option value="104">ARIS</mat-option>
+                  <mat-option value="105">SCPS</mat-option>
+                  <mat-option value="106">QNX</mat-option>
+                  <mat-option value="107">A/N</mat-option>
+                  <mat-option value="108">IPComp</mat-option>
+                  <mat-option value="109">SNP</mat-option>
+                  <mat-option value="110">Compaq-Peer</mat-option>
+                  <mat-option value="111">IPX-in-IP</mat-option>
+                  <mat-option value="112">CARP</mat-option>
+                  <mat-option value="113">PGM</mat-option>
+                  <mat-option value="115">L2TP</mat-option>
+                  <mat-option value="116">DDX</mat-option>
+                  <mat-option value="117">IATP</mat-option>
+                  <mat-option value="118">STP</mat-option>
+                  <mat-option value="119">SRP</mat-option>
+                  <mat-option value="120">UTI</mat-option>
+                  <mat-option value="121">SMP</mat-option>
+                  <mat-option value="122">SM</mat-option>
+                  <mat-option value="123">PTP</mat-option>
+                  <mat-option value="124">ISIS</mat-option>
+                  <mat-option value="125">FIRE</mat-option>
+                  <mat-option value="126">CRTP</mat-option>
+                  <mat-option value="127">CRUDP</mat-option>
+                  <mat-option value="128">SSCOPMCE</mat-option>
+                  <mat-option value="129">IPLT</mat-option>
+                  <mat-option value="130">SPS</mat-option>
+                  <mat-option value="131">PIPE</mat-option>
+                  <mat-option value="132">SCTP</mat-option>
+                  <mat-option value="133">FC</mat-option>
+                  <mat-option value="134">RSVP-E2E-IGNORE</mat-option>
+                  <mat-option value="135">Mobility-Header</mat-option>
+                  <mat-option value="136">UDPLite</mat-option>
+                  <mat-option value="137">MPLS-IN-IP</mat-option>
+                  <mat-option value="138">MANET</mat-option>
+                  <mat-option value="139">HIP</mat-option>
+                  <mat-option value="140">SHIM6</mat-option>
+                  <mat-option value="141">WESP</mat-option>
+                  <mat-option value="142">ROHC</mat-option>
+                  <mat-option value="240">PFSYNC</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-sm-2">
+              <mat-label>Port Range</mat-label>
+              <mat-form-field appearance="outline" style="width: 100%;">
+                <input matInput placeholder="1 - 65535"
+                  [(ngModel)]="presetServiceValues2[selectedPresetService2].portRange" name="portRange2"
+                  [disabled]="selectedPresetService2 !== 'custom'">
+              </mat-form-field>
+            </div>
+            <div class="col-sm-3">
+              <mat-label>Remote Address</mat-label>
+              <mat-form-field appearance="outline" style="width: 100%;">
+                <input matInput placeholder="0.0.0.0/0">
+              </mat-form-field>
+            </div>
+            <div class="col-sm-2">
+              <mat-label>Description</mat-label>
+              <mat-form-field appearance="outline" style="width: 100%;">
+                <input matInput placeholder="Description">
+              </mat-form-field>
+            </div>
+            <div class="col-sm-1">
+              <button (click)="addRow2()" class="small-button" style="margin-bottom: 3px;"><i
+                  class="bi bi-plus-square-fill"></i>&nbsp;Add</button>
+              <button (click)="deleteRow2(i)" class="error-button" [disabled]="rows.length === 1"><i
+                  class="bi bi-trash3-fill"></i>&nbsp;Delete</button>
             </div>
           </div>
         </div>
@@ -130,9 +527,9 @@
     <button class="close-button" (click)="toggleCardClose()">&times;</button>
     <!-- Card content goes here -->
     <p style="font-size: 25px;">{{display?.name}}</p>
-    
+
     <mat-tab-group>
-      <mat-tab label="Summary"> 
+      <mat-tab label="Summary">
         <p><b>Last Updated </b>August 25, 2022 at 5:28:23 AM GMT+8</p>
         <p><b>Status: </b>Configured</p>
         <p><b>Last Configured:</b>August 25, 2022 at 5:28:23 AM GMT+8</p>

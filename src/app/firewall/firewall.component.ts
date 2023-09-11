@@ -9,6 +9,97 @@ import { ModalDismissReasons, NgbDatepickerModule, NgbModal } from '@ng-bootstra
   styleUrls: ['./firewall.component.scss']
 })
 export class FirewallComponent {
+
+  // This is for outbound section
+
+  presetServiceValues: { [key: string]: { protocol: string; portRange: string } } = {
+    custom: { protocol: '', portRange: '' },
+    HTTP: { protocol: '6', portRange: '80' },
+    HTTPS: { protocol: '6', portRange: '443' },
+    HTTPUDP: { protocol: '17', portRange: '80' },
+    HTTPSUDP: { protocol: '17', portRange: '443' },
+    FTP: { protocol: '6', portRange: '21' },
+    NTP: { protocol: '17', portRange: '123' },
+    POP3: { protocol: '6', portRange: '110' },
+    SIP: { protocol: '6', portRange: '5060' },
+    SMTP: { protocol: '6', portRange: '25' },
+    SNMP: { protocol: '17', portRange: '161' },
+    SSH: { protocol: '6', portRange: '22' },
+    TELNET: { protocol: '6', portRange: '23' },
+  };
+
+  selectedPresetService: string = 'custom';
+
+
+  rows: any[] = [{ 
+    presetService: '',
+    protocol: '',
+    portRange: '',
+    remoteAddress: '',
+    description: '',
+  }];
+
+  addRow() {
+    this.rows.push({
+      presetService: '',
+      protocol: '',
+      portRange: '',
+      remoteAddress: '',
+      description: '',
+    });
+  }
+
+  deleteRow(index: number) {
+    if (this.rows.length > 1) {
+      this.rows.splice(index, 1);
+    }
+  }
+
+  // THIS IS FOR INBOUND SECTION
+
+  presetServiceValues2: { [key: string]: { protocol: string; portRange: string } } = {
+    custom: { protocol: '', portRange: '' },
+    HTTP: { protocol: '6', portRange: '80' },
+    HTTPS: { protocol: '6', portRange: '443' },
+    HTTPUDP: { protocol: '17', portRange: '80' },
+    HTTPSUDP: { protocol: '17', portRange: '443' },
+    FTP: { protocol: '6', portRange: '21' },
+    NTP: { protocol: '17', portRange: '123' },
+    POP3: { protocol: '6', portRange: '110' },
+    SIP: { protocol: '6', portRange: '5060' },
+    SMTP: { protocol: '6', portRange: '25' },
+    SNMP: { protocol: '17', portRange: '161' },
+    SSH: { protocol: '6', portRange: '22' },
+    TELNET: { protocol: '6', portRange: '23' },
+  };
+
+  selectedPresetService2: string = 'custom';
+
+
+  rows2: any[] = [{ 
+    presetService: '',
+    protocol: '',
+    portRange: '',
+    remoteAddress: '',
+    description: '',
+  }];
+
+  addRow2() {
+    this.rows2.push({
+      presetService: '',
+      protocol: '',
+      portRange: '',
+      remoteAddress: '',
+      description: '',
+    });
+  }
+
+  deleteRow2(index2: number) {
+    if (this.rows2.length > 1) {
+      this.rows2.splice(index2, 1);
+    }
+  }
+
   isCardVisible: boolean = false;
   display:any;
 
@@ -32,6 +123,8 @@ export class FirewallComponent {
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+    // this.addRow();
+
   }
 
   applyFilter(event: Event) {
@@ -55,6 +148,10 @@ export class FirewallComponent {
 
   openXl(content: any) {
     this.modalService.open(content, { size: 'xl' });
+  }
+
+  openXxl(content: any) {
+    this.modalService.open(content, { size: '500' });
   }
 }
 
