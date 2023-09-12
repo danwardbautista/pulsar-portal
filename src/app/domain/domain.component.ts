@@ -9,6 +9,30 @@ import { ModalDismissReasons, NgbDatepickerModule, NgbModal } from '@ng-bootstra
   styleUrls: ['./domain.component.scss']
 })
 export class DomainComponent {
+  rows: any[] = [{ 
+    presetService: '',
+    protocol: '',
+    portRange: '',
+    remoteAddress: '',
+    description: '',
+  }];
+
+  addRow() {
+    this.rows.push({
+      presetService: '',
+      protocol: '',
+      portRange: '',
+      remoteAddress: '',
+      description: '',
+    });
+  }
+
+  deleteRow(index: number) {
+    if (this.rows.length > 1) {
+      this.rows.splice(index, 1);
+    }
+  }
+
   isCardVisible: boolean = false;
   display:any;
 

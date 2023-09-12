@@ -75,7 +75,7 @@
           Conditions
         </div>
         <div class="form-box-content">
-          <div class="row">
+          <div class="row" *ngFor="let row of rows; let i = index">
             <div class="col">
               <mat-label>When</mat-label>
               <br>
@@ -94,6 +94,12 @@
                 <input matInput placeholder="Ex: Input">
               </mat-form-field>
             </div>
+            <div class="col-sm-2">
+              <button (click)="addRow()" class="small-button" style="margin-bottom: 3px;"><i
+                  class="bi bi-plus-square-fill"></i>&nbsp;Add</button>
+              <button (click)="deleteRow(i)" class="error-button" [disabled]="rows.length === 1"><i
+                  class="bi bi-trash3-fill"></i>&nbsp;Delete</button>
+            </div>
           </div>
         </div>
       </div>
@@ -105,7 +111,7 @@
           Notify
         </div>
         <div class="form-box-content">
-          <div class="row">
+          <div class="row" *ngFor="let row2 of rows2; let i2 = index">
             <div class="col">
               <mat-label>Message Type</mat-label>
               <br>
@@ -122,6 +128,12 @@
               <mat-form-field appearance="outline" style="width: 100%;">
                 <input matInput placeholder="Ex: person@example.com">
               </mat-form-field>
+            </div>
+            <div class="col-sm-2">
+              <button (click)="addRow2()" class="small-button" style="margin-bottom: 3px;"><i
+                  class="bi bi-plus-square-fill"></i>&nbsp;Add</button>
+              <button (click)="deleteRow2(i2)" class="error-button" [disabled]="rows.length === 1"><i
+                  class="bi bi-trash3-fill"></i>&nbsp;Delete</button>
             </div>
           </div>
         </div>

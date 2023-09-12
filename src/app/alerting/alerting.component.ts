@@ -9,6 +9,54 @@ import { ModalDismissReasons, NgbDatepickerModule, NgbModal } from '@ng-bootstra
   styleUrls: ['./alerting.component.scss']
 })
 export class AlertingComponent {
+  rows: any[] = [{ 
+    presetService: '',
+    protocol: '',
+    portRange: '',
+    remoteAddress: '',
+    description: '',
+  }];
+
+  addRow() {
+    this.rows.push({
+      presetService: '',
+      protocol: '',
+      portRange: '',
+      remoteAddress: '',
+      description: '',
+    });
+  }
+
+  deleteRow(index: number) {
+    if (this.rows.length > 1) {
+      this.rows.splice(index, 1);
+    }
+  }
+
+  rows2: any[] = [{ 
+    presetService: '',
+    protocol: '',
+    portRange: '',
+    remoteAddress: '',
+    description: '',
+  }];
+
+  addRow2() {
+    this.rows2.push({
+      presetService: '',
+      protocol: '',
+      portRange: '',
+      remoteAddress: '',
+      description: '',
+    });
+  }
+
+  deleteRow2(index: number) {
+    if (this.rows2.length > 1) {
+      this.rows2.splice(index, 1);
+    }
+  }
+
   isCardVisible: boolean = false;
   display:any;
 
