@@ -86,9 +86,9 @@
           <br>
           <mat-radio-group aria-label="Select an option">
             <mat-radio-button value="enabled"><span
-                style="padding:5px;background-color: rgb(192, 6, 6);color:white;border-radius: 7px;">Deny</span></mat-radio-button>
+                style="padding:5px;background-color: rgb(192, 6, 6);color:white;border-radius: 7px;"><b>DENY</b></span></mat-radio-button>
             <mat-radio-button value="enabled"><span
-                style="padding:5px;background-color: rgb(6, 192, 52);color:white;border-radius: 7px;">Allow</span></mat-radio-button>
+                style="padding:5px;background-color: rgb(6, 192, 52);color:white;border-radius: 7px;"><b>ALLOW</b></span></mat-radio-button>
           </mat-radio-group>
           <br>
           <h3><b>Exceptions</b></h3>
@@ -306,9 +306,9 @@
           <br>
           <mat-radio-group aria-label="Select an option">
             <mat-radio-button value="enabled"><span
-                style="padding:5px;background-color: rgb(192, 6, 6);color:white;border-radius: 7px;">Deny</span></mat-radio-button>
+                style="padding:5px;background-color: rgb(192, 6, 6);color:white;border-radius: 7px;"><b>DENY</b></span></mat-radio-button>
             <mat-radio-button value="enabled"><span
-                style="padding:5px;background-color: rgb(6, 192, 52);color:white;border-radius: 7px;">Allow</span></mat-radio-button>
+                style="padding:5px;background-color: rgb(6, 192, 52);color:white;border-radius: 7px;"><b>ALLOW</b></span></mat-radio-button>
           </mat-radio-group>
           <br>
           <h3><b>Exceptions</b></h3>
@@ -530,14 +530,118 @@
 
     <mat-tab-group>
       <mat-tab label="Summary">
-        <p><b>Last Updated </b>August 25, 2022 at 5:28:23 AM GMT+8</p>
-        <p><b>Status: </b>Configured</p>
-        <p><b>Last Configured:</b>August 25, 2022 at 5:28:23 AM GMT+8</p>
+        <div class="tab-content">
+          <p><b>Last Updated </b>August 25, 2022 at 5:28:23 AM GMT+8</p>
+          <p><b>Status: </b>Configured</p>
+          <p><b>Last Configured:</b>August 25, 2022 at 5:28:23 AM GMT+8</p>
+        </div>
       </mat-tab>
-      <mat-tab label="Outbound"> Content 2 </mat-tab>
-      <mat-tab label="Inbound"> Content 3 </mat-tab>
-      <mat-tab label="Services"> Content 4 </mat-tab>
+      <mat-tab label="Outbound">
+        <div class="tab-content">
+          <h3><b>Default Action: </b></h3> <span
+            style="padding:5px;background-color: rgb(192, 6, 6);color:white;border-radius: 7px;"><b>DENY</b></span> all
+          outbound traffic
+          <hr>
+          <h3><b>Exceptions: </b></h3>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <td><b>Protocol</b></td>
+                <td><b>Port (Range)</b></td>
+                <td><b>Remote Address</b></td>
+                <td><b>Description</b></td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>TCP</td>
+                <td>80-443</td>
+                <td>192.168.1.100</td>
+                <td>Web server</td>
+              </tr>
+              <tr>
+                <td>UDP</td>
+                <td>53</td>
+                <td>10.0.0.2</td>
+                <td>DNS</td>
+              </tr>
+              <tr>
+                <td>TCP</td>
+                <td>22</td>
+                <td>172.16.0.5</td>
+                <td>SSH</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </mat-tab>
+      <mat-tab label="Inbound">
+        <div class="tab-content">
+          <h3><b>Default Action: </b></h3> <span
+            style="padding:5px;background-color: rgb(192, 6, 6);color:white;border-radius: 7px;"><b>DENY</b></span> all
+          inbound traffic
+          <hr>
+          <h3><b>Exceptions: </b></h3>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <td><b>Protocol</b></td>
+                <td><b>Port (Range)</b></td>
+                <td><b>Remote Address</b></td>
+                <td><b>Description</b></td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>TCP</td>
+                <td>443</td>
+                <td>192.168.1.100</td>
+                <td>Web server</td>
+              </tr>
+              <tr>
+                <td>TCP</td>
+                <td>53</td>
+                <td>10.0.0.2</td>
+                <td>DNS</td>
+              </tr>
+              <tr>
+                <td>TCP</td>
+                <td>22</td>
+                <td>172.16.0.5</td>
+                <td>SSH</td>
+              </tr>
+              <tr>
+                <td>UDP</td>
+                <td>80</td>
+                <td>45.145.100.12</td>
+                <td>SSH</td>
+              </tr>
+              <tr>
+                <td>TCP</td>
+                <td>80</td>
+                <td>65.125.101.51</td>
+                <td>SSH</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </mat-tab>
+      <mat-tab label="Services">
+        <div class="tab-content">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <td><b>Name</b></td>
+                <td><b>Type</b></td>
+                <td><b>MSISDN</b></td>
+                <td><b>ICCID</b></td>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+      </mat-tab>
     </mat-tab-group>
-    <!-- <button class="btn btn-dark">View more</button> -->
   </div>
 </div>

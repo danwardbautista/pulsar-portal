@@ -107,12 +107,50 @@
 
     <mat-tab-group>
       <mat-tab label="Summary">
-        <p><b>Last Updated </b>August 25, 2022 at 5:28:23 AM GMT+8</p>
-        <p><b>Status: </b>Configured</p>
-        <p><b>Last Configured:</b>August 25, 2022 at 5:28:23 AM GMT+8</p>
+        <div class="tab-content">
+          <p><b>Last Updated </b>August 25, 2022 at 5:28:23 AM GMT+8</p>
+          <p><b>Status: </b>Configured</p>
+          <p><b>Last Configured:</b>August 25, 2022 at 5:28:23 AM GMT+8</p>
+        </div>
       </mat-tab>
-      <mat-tab label="Domain"> Content 2 </mat-tab>
-      <mat-tab label="Services"> Content 3 </mat-tab>
+      <mat-tab label="Domain">
+        <div class="tab-content">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <td><b>Domains</b></td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>www.example.com</td>
+              </tr>
+              <tr>
+                <td>www.example.org</td>
+              </tr>
+              <tr>
+                <td>www.example.net</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </mat-tab>
+      <mat-tab label="Services">
+        <div class="tab-content">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <td><b>Name</b></td>
+                <td><b>Type</b></td>
+                <td><b>MSISDN</b></td>
+                <td><b>ICCID</b></td>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+      </mat-tab>
     </mat-tab-group>
     <!-- <button class="btn btn-dark">View more</button> -->
   </div>
