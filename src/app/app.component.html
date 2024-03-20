@@ -5,6 +5,10 @@
       <mat-icon>menu</mat-icon>
     </button>
 
+    <button (click)="redirectToKeycloakLogin()">
+      test
+    </button>
+
     <span style="padding-left: 15px;"></span>
     <span class="example-spacer"></span>
     John Smith
@@ -20,7 +24,7 @@
   </mat-toolbar>
 
 
-  <mat-drawer *ngIf="showToolbarAndDrawer" #drawer class="example-sidenav" mode="side" opened="true">
+  <!-- <mat-drawer *ngIf="showToolbarAndDrawer" #drawer class="example-sidenav" mode="side" opened="true">
     <a routerLink="dashboard">
       <img src="https://auth.pivotel.com.au/pulsar4/assets/img/pulsar4-logo.png" class="sidenav-logo">
     </a>
@@ -105,7 +109,7 @@
     <div style="position: fixed;bottom: 0;padding-left:60px;padding-bottom: 40px;">
 
     </div>
-  </mat-drawer>
+  </mat-drawer> -->
 
   <div class="example-sidenav-content">
     <router-outlet></router-outlet>

@@ -42,6 +42,7 @@ import { FirewallComponent } from './firewall/firewall.component';
 import { DomainComponent } from './domain/domain.component';
 import { ActionLogComponent } from './action-log/action-log.component';
 import { UsersComponent } from './users/users.component';
+import { ReceiverComponent } from './receiver/receiver.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -56,6 +57,7 @@ const routes: Routes = [
   { path: 'domain', component: DomainComponent },
   { path: 'action-log', component: ActionLogComponent },
   { path: 'users', component: UsersComponent },
+  { path: 'receiver', component: ReceiverComponent },
 ];
 
 @NgModule({
@@ -71,7 +73,8 @@ const routes: Routes = [
     FirewallComponent,
     DomainComponent,
     ActionLogComponent,
-    UsersComponent
+    UsersComponent,
+    ReceiverComponent
   ],
   imports: [
     BrowserModule,
